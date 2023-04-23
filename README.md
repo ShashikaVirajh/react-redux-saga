@@ -1,14 +1,14 @@
 ## Motivation
 
-- This project was developed as a reference project to start working with @reduxjs/toolkit redux library.
+- This project was developed as a reference project to start working with redux-saga library.
 - Tried to provide a complete but simple example for the developers who want to easily get used to this
   amazing library.
 
 ## Installation Guide
 
 ```bash
-git clone https://github.com/ShashikaVirajh/react-redux-toolkit-example.git
-cd react-redux-toolkit-example
+git clone https://github.com/ShashikaVirajh/react-redux-saga-example.git
+cd react-redux-saga-example
 yarn
 ```
 
@@ -26,7 +26,8 @@ Sometimes these APIs are not working. It must be due to the free plan of cocktai
 ## Tech Stack Used
 
 Typescript - for type safety
-Redux tool kit - as the redux library
+Redux saga - as the redux library
+Typed redux saga - for saga types
 Mui - As the UI library
 Axios - to make API requests
 
