@@ -1,10 +1,6 @@
-import { TCocktail, TDetailedCocktail } from './cocktail-state.types';
+import { TCocktail } from '../cocktail.reducer';
 
 export type TFetchRandomCocktailSuccessPayload = TCocktail[];
-
-export type TFetchDetailedCockatailSuccessPayload = TDetailedCocktail[];
-
-export type TSearchCocktailSuccessPayload = TCocktail[];
 
 export type TCustomError = {
   errorMessage: string;

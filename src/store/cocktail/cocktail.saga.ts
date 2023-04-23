@@ -2,10 +2,24 @@ import { call, put, takeLeading } from 'typed-redux-saga';
 
 import { fetchRandomCocktailFailed, fetchRandomCocktailSuccess } from './cocktail.actions';
 import { CocktailService } from './cocktail.service';
-import { COCKTAIL_ACTION_TYPES } from './types/cocktail-action.types';
-import { CocktailSagas, TFetchRandomCocktailSaga } from './types/cocktail-saga.types';
+import {
+  COCKTAIL_ACTION_TYPES,
+  TFetchRandomCocktailFailedAction,
+  TFetchRandomCocktailRequestAction,
+  TFetchRandomCocktailSuccessAction
+} from '../cocktail/cocktail.actions';
 import { normalizeFetchRandomCocktailsResponse } from '../../normalizers/cocktail.normalizer';
 import { TCustomError } from './types/cocktail-payload.types';
+
+import { CallEffect, ForkEffect, PutEffect } from 'redux-saga/effects';
+
+export type TFetchRandomCocktailSaga = Generator<
+  | CallEffect<TFetchRandomCocktailRequestAction>
+  | PutEffect<TFetchRandomCocktailSuccessAction>
+  | PutEffect<TFetchRandomCocktailFailedAction>
+>;
+
+export type CocktailSagas = Generator<ForkEffect<never>>;
 
 function* fetchRandomCocktailSaga(): TFetchRandomCocktailSaga {
   try {

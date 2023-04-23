@@ -2,18 +2,18 @@ import { Grid, Typography } from '@mui/material';
 import { CocktailCard } from './components/cocktail-card.component';
 import { FC, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from './store/store';
-import { fetchCocktailList } from './store/cocktail/cocktail.reducer';
+import { RootState } from './store/store';
+import { fetchRandomCocktailRequest } from './store/cocktail/cocktail.actions';
 
 export const App: FC = (): JSX.Element => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch();
 
-  const cocktailList = useSelector((state: RootState) => state.cocktails.cocktailList);
-  const loading = useSelector((state: RootState) => state.cocktails.loading);
-  const error = useSelector((state: RootState) => state.cocktails.error);
+  const cocktailList = useSelector((state: RootState) => state.cocktail.cocktailList);
+  const loading = useSelector((state: RootState) => state.cocktail.loading);
+  const error = useSelector((state: RootState) => state.cocktail.error);
 
   useEffect(() => {
-    dispatch(fetchCocktailList());
+    dispatch(fetchRandomCocktailRequest());
   }, [dispatch]);
 
   if (loading) {
