@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Grid, Typography } from '@mui/material';
+import { CocktailCard } from './components/cocktail-card.component';
+import { FC, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from './store/store';
+import { fetchCocktailList } from './store/cocktail/cocktail.reducer';
 
-function App() {
+export const App: FC = (): JSX.Element => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const cocktailList = useSelector((state: RootState) => state.cocktails.cocktailList);
+  const loading = useSelector((state: RootState) => state.cocktails.loading);
+  const error = useSelector((state: RootState) => state.cocktails.error);
+
+  useEffect(() => {
+    dispatch(fetchCocktailList());
+  }, [dispatch]);
+
+  if (loading) {
+    return (
+      <Typography textAlign='center' mt='20rem' color='blue'>
+        Loading...
+      </Typography>
+    );
+  }
+
+  if (error) {
+    return (
+      <Typography textAlign='center' mt='20rem' color='red'>
+        ERROR: {error}
+      </Typography>
+    );
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Grid container justifyContent='center' spacing={'1rem'}>
+      {cocktailList.map((cocktail, index) => (
+        <Grid key={index} item xs={2}>
+          <CocktailCard key={cocktail.cocktailId} cocktailInfo={cocktail} />
+        </Grid>
+      ))}
+    </Grid>
   );
-}
-
-export default App;
+};
