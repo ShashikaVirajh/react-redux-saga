@@ -13,14 +13,6 @@ import { TCustomError } from './types/cocktail-payload.types';
 
 import { CallEffect, ForkEffect, PutEffect } from 'redux-saga/effects';
 
-export type TFetchRandomCocktailSaga = Generator<
-  | CallEffect<TFetchRandomCocktailRequestAction>
-  | PutEffect<TFetchRandomCocktailSuccessAction>
-  | PutEffect<TFetchRandomCocktailFailedAction>
->;
-
-export type CocktailSagas = Generator<ForkEffect<never>>;
-
 function* fetchRandomCocktailSaga(): TFetchRandomCocktailSaga {
   try {
     const data = yield* call(CocktailService.FetchRandomCocktails);
@@ -35,3 +27,11 @@ function* fetchRandomCocktailSaga(): TFetchRandomCocktailSaga {
 export function* cocktailSagas(): CocktailSagas {
   yield* takeLeading(COCKTAIL_ACTION_TYPES.FETCH_RANDOM_COCKTAIL_REQUEST, fetchRandomCocktailSaga);
 }
+
+export type TFetchRandomCocktailSaga = Generator<
+  | CallEffect<TFetchRandomCocktailRequestAction>
+  | PutEffect<TFetchRandomCocktailSuccessAction>
+  | PutEffect<TFetchRandomCocktailFailedAction>
+>;
+
+export type CocktailSagas = Generator<ForkEffect<never>>;
