@@ -8,8 +8,6 @@ import {
   TFetchRandomCocktailRequestAction,
   TFetchRandomCocktailSuccessAction
 } from '../cocktail/cocktail.actions';
-import { normalizeFetchRandomCocktailsResponse } from '../../normalizers/cocktail.normalizer';
-import { TCustomError } from './types/cocktail-payload.types';
 
 import { CallEffect, ForkEffect, PutEffect } from 'redux-saga/effects';
 
