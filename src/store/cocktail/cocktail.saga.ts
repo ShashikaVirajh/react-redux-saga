@@ -16,11 +16,10 @@ import { CallEffect, ForkEffect, PutEffect } from 'redux-saga/effects';
 function* fetchRandomCocktailSaga(): TFetchRandomCocktailSaga {
   try {
     const data = yield* call(CocktailService.FetchRandomCocktails);
-    const getCocktailSuccessPayload = normalizeFetchRandomCocktailsResponse(data);
-
-    yield* put(fetchRandomCocktailSuccess(getCocktailSuccessPayload));
-  } catch (error) {
-    yield* put(fetchRandomCocktailFailed(error as TCustomError));
+    yield* put(fetchRandomCocktailSuccess(data));
+  } catch (error: any) {
+    const errorMessage = error?.response?.data?.msg || error?.message;
+    yield* put(fetchRandomCocktailFailed(errorMessage));
   }
 }
 

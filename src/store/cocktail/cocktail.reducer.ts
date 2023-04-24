@@ -53,6 +53,7 @@ const handleFetchRandomCocktailSuccess = (
 ): TCocktailState => ({
   ...state,
   cocktailList: action.payload,
+  loading: false,
   error: null
 });
 
