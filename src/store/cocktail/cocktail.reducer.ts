@@ -52,7 +52,8 @@ const handleFetchRandomCocktailSuccess = (
   action: AnyAction
 ): TCocktailState => ({
   ...state,
-  cocktailList: action.payload
+  cocktailList: action.payload,
+  error: null
 });
 
 const handleFetchRandomCocktailFailed = (

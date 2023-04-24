@@ -3,6 +3,7 @@
 - This project was developed as a reference project to start working with redux-saga library.
 - Tried to provide a complete but simple example for the developers who want to easily get used to this
   amazing library.
+- Created redux utils to minimize the repetitive code while working with redux and sagas.
 
 ## Installation Guide
 
